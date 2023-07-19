@@ -1,4 +1,7 @@
 let seconds = 30;
+let correctAnswer = 0;
+let incorrectAnswer = 0;
+
 
 function getElement(id) {
     return document.getElementById(id);
@@ -29,4 +32,27 @@ function timer() {
 }
 
 timer();
+
+function check() {
+    let input;
+    try {
+      input = document.querySelector('input[name = "option"]:checked').value;
+    } catch {
+      return;
+    }
+    if (input === "Հայաստան") {
+      correctAnswer++;
+      getElement("score").innerHTML = correctAnswer;
+    } else {
+      incorrectAnswer++;
+    }
+    clearInterval(checkInterval);
+  }
+  function finish() {
+    clearInterval(checkInterval);
+    let percentage = (correctAnswer / (correctAnswer+incorrectAnswer)) *100;
+    getElement("alertaccuracy").innerHTML = ` qo ardyunqn e ${percentage}%`;
+  }
+  let checkInterval = setInterval(check, 50);
+  timer();
 
