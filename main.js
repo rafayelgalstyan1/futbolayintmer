@@ -1,3 +1,4 @@
+let correct;
 let seconds = 30;
 let correctAnswer = 0;
 let incorrectAnswer = 0;
@@ -8,26 +9,34 @@ function getElement(id) {
 }
 
 function getRandomCountry() {
-  return countries[Math.floor(Math.random(countries.lenght - 1) * 10)]
+  return countries[Math.floor(Math.random() *(countries.length - 1))]
 }
 
 function main() {
-  coun = getRandomCountry();
+  let options = []
+  const maxOptions = 3;
+  while (options.length < maxOptions) {
+    let coun = getRandomCountry();
+    if (options.indexOf(coun) === -1) {
+      options.push(coun)
+    }
+  }
 
 
-  getElement("footballteam").src = coun.team;
-  getElement("optionlabel").innerHTML = coun.name;
+  for (let i = 0; i < options.length; i++) {
+    getElement(`optionlabel${i}`).innerHTML = options[i].name;
+    getElement(`optioninput${i}`).value = options[i].name;
+    getElement(`optionlabel${i}`).checked = false;
+  }
 
-
-
+  correct = options[Math.round(Math.random() * (options.length - 1))]
+  getElement("footballteam").src = correct.team
 }
 
-
 function timer() {
+  setTimeout(finish, seconds * 1000);
   getElement("time").innerHTML = seconds;
   let countdown = setInterval(function () {
-
-    main();
     seconds--;
     getElement("time").textContent = seconds;
     if (seconds <= 0) {
@@ -58,18 +67,33 @@ function check() {
   } catch {
     return;
   }
-  if (input === "Հայաստան") {
+  if (input === correct.name) {
     correctAnswer++;
     getElement("score").innerHTML = correctAnswer;
   } else {
     incorrectAnswer++;
   }
+  main();
   clearInterval(checkInterval);
 }
 function finish() {
   clearInterval(checkInterval);
   let percentage = (correctAnswer / (correctAnswer + incorrectAnswer)) * 100;
+  if (isNaN(percentage)) {
+    resultForAnswers = 100;
+  } else {
+    if (percentage >= 75 && percentage < 95) {
+      resultForAnswers = "duq cucaberel eq lav ardyunq"
+    } else if (percentage <= 95) {
+      resultForAnswers = "duq cucaberel eq gerazanc ardyunq"
+    }
+  }
   getElement("alertaccuracy").innerHTML = ` qo ardyunqn e ${percentage}%`;
 }
+
+// function refresh() {
+//   location = location;
+// }
 let checkInterval = setInterval(check, 50);
+main();
 
