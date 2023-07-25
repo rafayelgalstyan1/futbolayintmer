@@ -83,7 +83,7 @@ function finish() {
   if (isNaN(percentage)) {
     percentage = 100;
   } 
-  getElement("alertaccuracy").innerHTML = ` qo ardyunqn e ${percentage}%`;
+  getElement("alertaccuracy").innerHTML = ` Քո արձյունքն է${percentage}%`;
 }
 
  function refresh() 
