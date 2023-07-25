@@ -85,10 +85,7 @@ const countries = [
         "team": "./images/download-18.png",
         "name": "Արարատ Արմենիա"
     },
-    {
-        "team": "./images/download-18.png",
-        "name": "Արարատ Արմենիա"
-    },
+
 
     {
         "team": "./images/download-19.png",
@@ -121,5 +118,25 @@ const countries = [
     {
         "team": "./images/download.png",
         "name": "Մանչեսթեր Յունայթեդ"
+    },
+    {
+        "team": "./images/i.png",
+        "name": "`Ալ Նասր"
+    },
+    {
+        "team": "./images/download-25.png",
+        "name": "Բավարյա"
+    },
+    {
+        "team": "./images/download-26.png",
+        "name": "Այաքս"
+    },
+    {
+        "team": "./images/download-27.png",
+        "name": "Դորտմունդի Բորուսիյա"
+    },
+    {
+        "team": "./images/download-28.png",
+        "name": "Սեվիլյա"
     },
 ]

@@ -9,7 +9,7 @@ function getElement(id) {
 }
 
 function getRandomCountry() {
-  return countries[Math.floor(Math.random() *(countries.length - 1))]
+  return countries[Math.floor(Math.random() * (countries.length - 1))]
 }
 
 function main() {
@@ -21,12 +21,11 @@ function main() {
       options.push(coun)
     }
   }
-
-
   for (let i = 0; i < options.length; i++) {
+
     getElement(`optionlabel${i}`).innerHTML = options[i].name;
     getElement(`optioninput${i}`).value = options[i].name;
-    getElement(`optionlabel${i}`).checked = false;
+    getElement(`optioninput${i}`).checked = false;
   }
 
   correct = options[Math.round(Math.random() * (options.length - 1))]
@@ -74,26 +73,23 @@ function check() {
     incorrectAnswer++;
   }
   main();
-  clearInterval(checkInterval);
 }
 function finish() {
   clearInterval(checkInterval);
+  getElement("alert").style.display = "block";
+  getElement("card").style.display = "none";
+  getElement("alertscore").innerHTML = correctAnswer;
   let percentage = (correctAnswer / (correctAnswer + incorrectAnswer)) * 100;
   if (isNaN(percentage)) {
-    resultForAnswers = 100;
-  } else {
-    if (percentage >= 75 && percentage < 95) {
-      resultForAnswers = "duq cucaberel eq lav ardyunq"
-    } else if (percentage <= 95) {
-      resultForAnswers = "duq cucaberel eq gerazanc ardyunq"
-    }
-  }
+    percentage = 100;
+  } 
   getElement("alertaccuracy").innerHTML = ` qo ardyunqn e ${percentage}%`;
 }
 
-// function refresh() {
-//   location = location;
-// }
+ function refresh() 
+ { 
+     location = location;
+ }
 let checkInterval = setInterval(check, 50);
 main();
 
